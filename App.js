@@ -3,11 +3,13 @@ import { StyleSheet, View, Alert } from 'react-native';
 import Constants from 'expo-constants';
 import TopBar from './components/TopBar';
 import axios from 'axios';
+import SwipeableImage from './components/SwipeableImage';
 
 export default function App() {
 
-  const [users, setUsers] = useState([])
-  
+  const [users, setUsers] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   const fetchUser = async() => {
     try {
       const {data} = await axios.get('https://randomuser.me/api/?gender=female&results=50');
@@ -32,6 +34,11 @@ export default function App() {
     <View style={styles.container}>
       <TopBar />
       <View styles={styles.swipes}>
+        {
+          users.length > 1 && (
+            <SwipeableImage user={users[currentIndex]}/>
+          )
+        }
       </View>
     </View>
   );
