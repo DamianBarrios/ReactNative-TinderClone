@@ -1,14 +1,37 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { StyleSheet, View, Alert } from 'react-native';
 import Constants from 'expo-constants';
 import TopBar from './components/TopBar';
+import axios from 'axios';
 
 export default function App() {
+
+  const [users, setUsers] = useState([])
+  
+  const fetchUser = async() => {
+    try {
+      const {data} = await axios.get('https://randomuser.me/api/?gender=female&results=50');
+      setUsers(data.results);
+    } catch (error) {
+      console.log(error)
+      Alert.alert('Error getting users' , '', [{
+        text: 'Retry',
+        onPress: () => {
+          fetchUser()
+        }
+      }])
+    }
+  }
+
+  useEffect(() => {
+    fetchUser()
+  }, [])
+
+
   return (
     <View style={styles.container}>
       <TopBar />
       <View styles={styles.swipes}>
-
       </View>
     </View>
   );
