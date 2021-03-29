@@ -4,6 +4,10 @@ import Constants from 'expo-constants';
 import TopBar from './components/TopBar';
 import axios from 'axios';
 import SwipeableImage from './components/SwipeableImage';
+import BottomBar from './components/BottomBar';
+import Swipes from './components/Swipes';
+
+
 
 export default function App() {
 
@@ -34,12 +38,9 @@ export default function App() {
     <View style={styles.container}>
       <TopBar />
       <View styles={styles.swipes}>
-        {
-          users.length > 1 && (
-            <SwipeableImage user={users[currentIndex]}/>
-          )
-        }
+        {users.length > 1 && <Swipes users={users} currentIndex={currentIndex}></Swipes>}
       </View>
+      <BottomBar />
     </View>
   );
 }
