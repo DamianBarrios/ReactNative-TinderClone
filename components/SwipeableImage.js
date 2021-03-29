@@ -12,9 +12,9 @@ export default function SwipeableImage( {user , willLike, willPass} ) {
                     </View>
             )}
             {willPass && (
-                    <View style={styles.passBox}>
-                        <Text style={{...styles.textPrimary, color:'#F06795'}}>PASS</Text>
-                    </View>
+                <View style={styles.passBox}>
+                    <Text style={{...styles.textPrimary, color:'#F06795'}}>PASS</Text>
+                </View>
             )}
             <View style={styles.textContainer}>
                 <View style={styles.textRow}>
@@ -42,47 +42,43 @@ const boxStyle = {
 }
 
 const styles = StyleSheet.create({
-    
-    likeBox:{
-        ...boxStyle,
-        left: 40,
-        borderColor: '#64EDCC'
+    likeBox: {
+      ...boxStyle,
+      left: 40,
+      borderColor: '#64EDCC',
     },
-    passBox:{
-        ...boxStyle,
-        right: 40,
-        borderColor: '#F06795'
+    passBox: {
+      ...boxStyle,
+      right: 40,
+      borderColor: '#F06795',
     },
     photo: {
-        height: '90%',
-        resizeMode: 'cover',
-        borderRadius: 40,
+      height: '100%',
+      resizeMode: 'cover',
+      borderRadius: 10,
     },
     textContainer: {
-        position: 'absolute',
-        bottom: 100,
-        left: 30,
+      position: 'absolute',
+      bottom: 20,
+      left: 20,
     },
     textRow: {
-        flexDirection: 'row',
-        alignItems: 'center'
+      flexDirection: 'row',
+      alignItems: 'center',
     },
     textPrimary: {
-        color: 'white',
-        fontSize: 35,
-        fontWeight: 'bold'
+      color: 'white',
+      fontSize: 35,
+      fontWeight: 'bold',
     },
     textSecondary: {
-        color: 'white',
-        marginLeft: 10,
-        fontSize: 25
+      color: 'white',
+      marginLeft: 10,
+      fontSize: 25,
     },
     textShadow: {
-        textShadowColor: 'rgba(0, 0, 0, 0.80)',
-        textShadowOffset: {
-            width: -1,
-            height: 1
-        },
-        textShadowRadius: 10
-    }
-})
+      textShadowColor: 'rgba(0, 0, 0, 0.80)',
+      textShadowOffset: { width: -1, height: 1 },
+      textShadowRadius: 10,
+    },
+  })
