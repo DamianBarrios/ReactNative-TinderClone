@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Alert } from 'react-native';
 import Constants from 'expo-constants';
 import TopBar from './components/TopBar';
@@ -14,13 +14,13 @@ export default function App() {
   const [users, setUsers] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const fetchUser = async() => {
+  const fetchUser = async () => {
     try {
-      const {data} = await axios.get('https://randomuser.me/api/?gender=female&results=50');
+      const { data } = await axios.get('https://randomuser.me/api/?gender=female&results=50');
       setUsers(data.results);
     } catch (error) {
       console.log(error)
-      Alert.alert('Error getting users' , '', [{
+      Alert.alert('Error getting users', '', [{
         text: 'Retry',
         onPress: () => {
           fetchUser()
@@ -33,12 +33,42 @@ export default function App() {
     fetchUser()
   }, [])
 
+  const handleLike = () => {
+    console.log('like');
+    nextUser();
+  }
+
+  const handlePass = () => {
+    console.log('pass');
+    nextUser();
+  }
+
+  const nextUser = () => {
+    const nextIndex = users.length - 2 === currentIndex ? 0 : currentIndex + 1;
+    setCurrentIndex(nextIndex);
+  }
 
   return (
     <View style={styles.container}>
       <TopBar />
       <View styles={styles.swipes}>
-        {users.length > 1 && <Swipes users={users} currentIndex={currentIndex}></Swipes>}
+        {
+          users.length > 1 && 
+            users.map(
+              (u, i) => 
+                currentIndex === i && (
+                  <Swipes 
+                    key={i} 
+                    users={users} 
+                    currentIndex={currentIndex} 
+                    handleLike={handleLike} 
+                    handlePass={handlePass}
+                    >
+                      
+                    </Swipes>
+                )
+            )
+        }
       </View>
       <BottomBar />
     </View>
@@ -61,6 +91,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.29,
     shadowRadius: 4.65,
-    elevation:7
+    elevation: 7
   }
 });

@@ -4,7 +4,7 @@ import Swipeable from 'react-native-gesture-handler/Swipeable'
 import {RectButton} from 'react-native-gesture-handler'
 import SwipeableImage from './SwipeableImage'
 
-export default function Swipes({users, currentIndex}) {
+export default function Swipes({users, currentIndex, handleLike , handlePass}) {
     
     const renderLeftActions = () => {
         return (
@@ -28,6 +28,8 @@ export default function Swipes({users, currentIndex}) {
             rightThreshold={40}
             renderLeftActions={renderLeftActions}
             renderRightActions={renderRightActions}
+            onSwipeableLeftOpen={handleLike}
+            onSwipeableRightOpen={handlePass}
         >
             <SwipeableImage user={users[currentIndex]}>
 
